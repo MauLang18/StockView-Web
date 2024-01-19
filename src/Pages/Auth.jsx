@@ -29,7 +29,7 @@ export default function LoginPage() {
 
     try {
       const loginResponse = await fetch(
-        "http://190.113.124.155:9092/Auth/Login",
+        "http://190.113.124.155:9096/Auth/Login",
         {
           method: "POST",
           headers: {
@@ -46,7 +46,7 @@ export default function LoginPage() {
 
         // Obtener datos del usuario después del inicio de sesión
         const userResponse = await fetch(
-          `http://190.113.124.155:9092/Usuario/User?user=${name}`,
+          `http://190.113.124.155:9096/Usuario/User?user=${name}`,
           {
             method: "GET",
             headers: {
@@ -61,7 +61,7 @@ export default function LoginPage() {
 
           // Obtener datos del rol usando el ID del usuario
           const roleResponse = await fetch(
-            `http://190.113.124.155:9092/Rol/${rolId}`,
+            `http://190.113.124.155:9096/Rol/${rolId}`,
             {
               method: "GET",
               headers: {

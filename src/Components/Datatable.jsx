@@ -199,7 +199,7 @@ function EnhancedTable({ desc, priv }) {
         // Obtener el token usando la función useTokenBearer
         const { bearerToken } = useTokenStore.getState();
         const { privToken } = usePrivStore.getState();
-        const url = `http://190.113.124.155:9092/Articulo?desc=${desc}&priv=${privToken}&order=asc`;
+        const url = `http://190.113.124.155:9096/Articulo?desc=${desc}&priv=${privToken}&order=asc`;
 
         const response = await fetch(url, {
           headers: {

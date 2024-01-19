@@ -10,7 +10,7 @@ import * as signalR from "@microsoft/signalr";
 import { format } from "date-fns";
 
 export default function FolderList() {
-  const { data } = useFetch(`http://190.113.124.155:9092/Pedido`);
+  const { data } = useFetch(`http://190.113.124.155:9096/Pedido`);
 
   const [signalRData, setSignalRData] = useState(null);
 
@@ -22,7 +22,7 @@ export default function FolderList() {
 
   useEffect(() => {
     const connection1 = new signalR.HubConnectionBuilder()
-      .withUrl("http://190.113.124.155:9092/hubPedido", {
+      .withUrl("http://190.113.124.155:9096/hubPedido", {
         withCredentials: true,
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets,
