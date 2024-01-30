@@ -10,7 +10,7 @@ export default function ReusableList2({ data }) {
   }
 
   return (
-    <List sx={{ width: "100%", bgcolor: "background.paper" }}>
+    <List sx={{ width: "100%", bgcolor: "background.paper", display: 'flex', flexWrap: 'wrap' }}>
       {data.map((item) => (
         <ListItem
           key={item.id}
