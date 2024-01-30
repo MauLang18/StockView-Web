@@ -24,7 +24,7 @@ export default function ReusableList({ data }) {
   };
 
   return (
-    <List sx={{ width: "100%", bgcolor: "background.paper" }}>
+    <List sx={{ display: 'flex', flexDirection: 'row', width: "100%", bgcolor: "background.paper" }}>
       {data.map((item) => (
         <ListItem
           key={item.id}
@@ -34,28 +34,29 @@ export default function ReusableList({ data }) {
             padding: "12px",
             display: "flex",
             alignItems: "center",
+            justifyContent: "space-between",
           }}
         >
-          <ListItemText
-            sx={{ flex: 1, paddingRight: "16px" }}
-            primary={`Código: ${item.codigoArticulo}`}
-            secondary={`Descripción: ${item.articulo}`}
-          />
-          <ListItemText
-            sx={{ flex: 1, paddingRight: "16px" }}
-            primary={`Código Cliente: ${item.codigoCliente}`}
-            secondary={`Cliente: ${item.cliente}`}
-          />
-          <ListItemText
-            sx={{ flex: 1, paddingRight: "16px" }}
-            primary={`Vendedor: ${item.vendedor}`}
-            secondary={`Cantidad: ${item.cantidad}`}
-          />
-          <ListItemText
-            sx={{ flex: 1, paddingRight: "16px" }}
-            primary={`Estado Pedido: `}
-            secondary={getMessageByEstadoPedido(item.estadoPedido)}
-          />
+          <div>
+            <ListItemText
+              primary={`Cliente: ${item.cliente}`}
+              secondary={`Código Cliente: ${item.codigoCliente}`}
+            />
+            <ListItemText
+              primary={`Código: ${item.codigoArticulo}`}
+              secondary={`Descripción: ${item.articulo}`}
+            />
+          </div>
+          <div>
+            <ListItemText
+              primary={`Estado Pedido: `}
+              secondary={getMessageByEstadoPedido(item.estadoPedido)}
+            />
+            <ListItemText
+              primary={`Vendedor: ${item.vendedor}`}
+              secondary={`Cantidad: ${item.cantidad}`}
+            />
+          </div>
           <SelectWithIconButton id={item.id} />
         </ListItem>
       ))}

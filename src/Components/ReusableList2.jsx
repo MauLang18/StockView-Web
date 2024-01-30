@@ -22,21 +22,23 @@ export default function ReusableList2({ data }) {
             alignItems: "center",
           }}
         >
-          <ListItemText
-            sx={{ flex: 1, paddingRight: "40px" }}
-            primary={`Código: ${item.codigoArticulo}`}
-            secondary={`Descripción: ${item.articulo}`}
-          />
-          <ListItemText
-            sx={{ flex: 1, paddingRight: "10px" }}
-            primary={`Código Cliente: ${item.codigoCliente}`}
-            secondary={`Cliente: ${item.cliente}`}
-          />
-          <ListItemText
-            sx={{ flex: 1, paddingRight: "10px" }}
-            primary={`Vendedor: ${item.vendedor}`}
-            secondary={`Cantidad: ${item.cantidad}`}
-          />
+          <div>
+            <ListItemText
+              primary={`Cliente: ${item.cliente}`}
+              secondary={`Código Cliente: ${item.codigoCliente}`}
+            />
+            <ListItemText
+              primary={`Código: ${item.codigoArticulo}`}
+              secondary={`Descripción: ${item.articulo}`}
+            />
+          </div>
+          <div>
+            <ListItemText
+              sx={{ flex: 1, paddingRight: "10px" }}
+              primary={`Vendedor: ${item.vendedor}`}
+              secondary={`Cantidad: ${item.cantidad}`}
+            />
+          </div>
         </ListItem>
       ))}
     </List>

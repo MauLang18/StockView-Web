@@ -91,7 +91,7 @@ export default function FolderList() {
   };
 
   return (
-    <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+    <List sx={{ width: "100%", bgcolor: "background.paper" }}>
       {signalRData &&
         signalRData.data &&
         signalRData.data.map((item) => (
@@ -100,6 +100,9 @@ export default function FolderList() {
             disableGutters
             sx={{
               borderBottom: "1px solid #ddd",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
             }}
           >
             <ListItemAvatar>
@@ -107,36 +110,34 @@ export default function FolderList() {
                 <HistoryIcon />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText
-              sx={{ paddingRight: "150px" }}
-              primary={`Código: ${item.codigoArticulo}`}
-              secondary={`Descripción: ${item.articulo}`}
-            />
-            <ListItemText
-              sx={{ paddingRight: "150px" }}
-              primary={`Código Cliente: ${item.codigoCliente}`}
-              secondary={`Cliente: ${item.cliente}`}
-            />
-            <ListItemText
-              sx={{ paddingRight: "150px" }}
-              primary={`Vendedor: ${item.vendedor}`}
-              secondary={`Cantidad: ${item.cantidad}`}
-            />
-            <ListItemText
-              sx={{ paddingRight: "150px" }}
-              primary={`Estado Pedido: `}
-              secondary={getMessageByEstadoPedido(item.estadoPedido)}
-            />
-            <ListItemText
-              sx={{ paddingRight: "150px" }}
-              primary={`Fecha Pedido: `}
-              secondary={format(new Date(item.fechaPedido), "dd-MM-yyyy")}
-            />
-            <ListItemText
-              sx={{ paddingRight: "16px" }}
-              primary={`Hora Pedido: `}
-              secondary={format(new Date(item.fechaPedido), "hh:mm:ss")}
-            />
+            <div style={{ flex: 1, paddingRight: "20px" }}>
+              <ListItemText
+                primary={`Código: ${item.codigoArticulo}`}
+                secondary={`Descripción: ${item.articulo}`}
+              />
+              <ListItemText
+                primary={`Código Cliente: ${item.codigoCliente}`}
+                secondary={`Cliente: ${item.cliente}`}
+              />
+              <ListItemText
+                primary={`Vendedor: ${item.vendedor}`}
+                secondary={`Cantidad: ${item.cantidad}`}
+              />
+            </div>
+            <div style={{ flex: 1, paddingRight: "20px" }}>
+              <ListItemText
+                primary={`Estado Pedido: `}
+                secondary={getMessageByEstadoPedido(item.estadoPedido)}
+              />
+              <ListItemText
+                primary={`Fecha Pedido: `}
+                secondary={format(new Date(item.fechaPedido), "dd-MM-yyyy")}
+              />
+              <ListItemText
+                primary={`Hora Pedido: `}
+                secondary={format(new Date(item.fechaPedido), "hh:mm:ss")}
+              />
+            </div>
           </ListItem>
         ))}
     </List>
