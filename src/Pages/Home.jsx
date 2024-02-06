@@ -199,9 +199,9 @@ export default function Home() {
                   <CardContent>
                     {signalRData && signalRData.data && (
                       <ReusableList
-                        data={signalRData.data.filter(
-                          (item) => item.estadoPedido === 0
-                        )}
+                        data={signalRData.data
+                          .reverse()
+                          .filter((item) => item.estadoPedido === 0)}
                       />
                     )}
                   </CardContent>
@@ -214,7 +214,9 @@ export default function Home() {
                       <span className="pricetitle">Ultimos pedidos</span>
                     </div>
                     {signalRData && signalRData.data && (
-                      <ReusableList2 data={signalRData.data.slice(0, 10)} />
+                      <ReusableList2
+                        data={signalRData.data.reverse().slice(0, 10)}
+                      />
                     )}
                   </CardContent>
                 </Card>

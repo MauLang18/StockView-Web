@@ -94,7 +94,7 @@ export default function FolderList() {
     <List sx={{ width: "100%", bgcolor: "background.paper" }}>
       {signalRData &&
         signalRData.data &&
-        signalRData.data.map((item) => (
+        signalRData.data.reverse().map((item) => (
           <ListItem
             key={item.id}
             disableGutters
