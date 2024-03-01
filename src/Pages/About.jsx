@@ -9,6 +9,9 @@ import EnhancedTable from "../Components/Datatable";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
+import { Select } from "@mui/base/Select";
+import { Option } from "@mui/base/Option";
+import UnstyledSelectForm from "../Components/UnstyledSelectForm";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -86,6 +89,7 @@ export default function About() {
                     }}
                   />
                 </Search>
+                <UnstyledSelectForm />
                 <EnhancedTable desc={searchTerm} />
               </CardContent>
             </Card>

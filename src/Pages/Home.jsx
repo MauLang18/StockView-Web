@@ -17,7 +17,7 @@ import { useFetch } from "../Hooks/useFetch";
 import * as signalR from "@microsoft/signalr";
 
 export default function Home() {
-  const { data } = useFetch(`http://190.113.124.155:9096/Pedido`);
+  const { data } = useFetch(`http://190.113.124.155:9099/Pedido`);
 
   const [signalRData, setSignalRData] = useState(null);
 
@@ -29,7 +29,7 @@ export default function Home() {
 
   useEffect(() => {
     const connection1 = new signalR.HubConnectionBuilder()
-      .withUrl("http://190.113.124.155:9096/hubPedido", {
+      .withUrl("http://190.113.124.155:9099/hubPedido", {
         withCredentials: true,
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets,

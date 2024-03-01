@@ -24,7 +24,14 @@ export default function ReusableList({ data }) {
   };
 
   return (
-    <List sx={{ width: "100%", bgcolor: "background.paper", display: 'flex', flexWrap: 'wrap' }}>
+    <List
+      sx={{
+        width: "100%",
+        bgcolor: "background.paper",
+        display: "flex",
+        flexWrap: "wrap",
+      }}
+    >
       {data.map((item) => (
         <ListItem
           key={item.id}
@@ -56,6 +63,7 @@ export default function ReusableList({ data }) {
               primary={`Vendedor: ${item.vendedor}`}
               secondary={`Cantidad: ${item.cantidad}`}
             />
+            <ListItemText primary={`Observación: ${item.observacion}`} />
           </div>
           <SelectWithIconButton id={item.id} />
         </ListItem>

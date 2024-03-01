@@ -10,7 +10,7 @@ import * as signalR from "@microsoft/signalr";
 import { format } from "date-fns";
 
 export default function FolderList() {
-  const { data } = useFetch(`http://190.113.124.155:9096/Pedido`);
+  const { data } = useFetch(`http://190.113.124.155:9099/Pedido`);
 
   const [signalRData, setSignalRData] = useState(null);
 
@@ -22,7 +22,7 @@ export default function FolderList() {
 
   useEffect(() => {
     const connection1 = new signalR.HubConnectionBuilder()
-      .withUrl("http://190.113.124.155:9096/hubPedido", {
+      .withUrl("http://190.113.124.155:9099/hubPedido", {
         withCredentials: true,
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets,
@@ -94,7 +94,7 @@ export default function FolderList() {
     <List sx={{ width: "100%", bgcolor: "background.paper" }}>
       {signalRData &&
         signalRData.data &&
-        signalRData.data.reverse().map((item) => (
+        [...signalRData.data].reverse().map((item) => (
           <ListItem
             key={item.id}
             disableGutters
@@ -137,6 +137,7 @@ export default function FolderList() {
                 primary={`Hora Pedido: `}
                 secondary={format(new Date(item.fechaPedido), "hh:mm:ss")}
               />
+              <ListItemText primary={`Observación: ${item.observacion}`} />
             </div>
           </ListItem>
         ))}

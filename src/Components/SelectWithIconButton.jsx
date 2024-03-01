@@ -21,7 +21,7 @@ export default function SelectWithIconButton({ id }) {
   };
 
   const updateEstadoPedido = async (estadoPedido) => {
-    const url = "http://190.113.124.155:9096/Pedido/Edit/Estado";
+    const url = "http://190.113.124.155:9099/Pedido/Edit/Estado";
     const requestBody = {
       id: id,
       estadoPedido: estadoPedido,
