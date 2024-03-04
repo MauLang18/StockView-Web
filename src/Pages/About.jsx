@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "../Components/Sidebar";
 import Box from "@mui/material/Box";
 import Navbar from "../Components/Navbar";
@@ -9,9 +9,10 @@ import EnhancedTable from "../Components/Datatable";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
-import { Select } from "@mui/base/Select";
-import { Option } from "@mui/base/Option";
-import UnstyledSelectForm from "../Components/UnstyledSelectForm";
+import { useTokenStore } from "../tokenStore";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -54,6 +55,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function About() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedValue, setSelectedValue] = useState("");
 
   const handleSearch = () => {
     // Manejar la búsqueda, por ejemplo, puedes imprimir el término en la consola
@@ -62,6 +64,38 @@ export default function About() {
     // Ahora puedes usar setSearchTerm para actualizar el término de búsqueda
     // y pasar este término como prop a EnhancedTable
   };
+  const [options, setOptions] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+    console.log(selectedValue);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Obtener el token usando la función useTokenBearer
+        const { bearerToken } = useTokenStore.getState();
+        const url = `http://190.113.124.155:9099/Familias`;
+
+        const response = await fetch(url, {
+          headers: {
+            Authorization: `Bearer ${bearerToken}`,
+          },
+        });
+
+        const result = await response.json();
+        setOptions(result.data || []);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error al obtener datos:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -89,8 +123,22 @@ export default function About() {
                     }}
                   />
                 </Search>
-                <UnstyledSelectForm />
-                <EnhancedTable desc={searchTerm} />
+                <FormControl sx={{ m: 1, minWidth: 120 }}>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={selectedValue}
+                    label="Age"
+                    onChange={handleChange}
+                  >
+                    {options.map((option) => (
+                      <MenuItem key={option.codigo} value={option.codigo}>
+                        {option.descripcion}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+                <EnhancedTable desc={searchTerm} priv={selectedValue} />
               </CardContent>
             </Card>
           </Box>

@@ -199,7 +199,21 @@ function EnhancedTable({ desc, priv }) {
         // Obtener el token usando la función useTokenBearer
         const { bearerToken } = useTokenStore.getState();
         const { privToken } = usePrivStore.getState();
-        const url = `http://190.113.124.155:9099/Articulo?desc=${desc}&priv=${privToken}&order=asc`;
+        console.log(desc);
+        console.log(priv);
+        var url = ``;
+        if ((desc != "" || desc != null) && (priv == "" || priv == null)) {
+          url = `http://190.113.124.155:9099/Articulo?desc=${desc}&priv=${privToken}&order=asc`;
+        } else if (
+          (desc == "" || desc == null) &&
+          (priv != "" || priv != null)
+        ) {
+          url = `http://190.113.124.155:9099/Articulo/Familia?desc=${priv}&priv=${privToken}&order=asc`;
+        } else {
+          url = `http://190.113.124.155:9099/Articulo?desc=${desc}&priv=${privToken}&order=asc`;
+        }
+
+        console.log(url);
 
         const response = await fetch(url, {
           headers: {
@@ -217,7 +231,7 @@ function EnhancedTable({ desc, priv }) {
     };
 
     fetchData();
-  }, [desc]);
+  }, [desc, priv]);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
