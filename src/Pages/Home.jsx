@@ -15,6 +15,9 @@ import CreditCardIcon from "@mui/icons-material/CreditCard";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import { useFetch } from "../Hooks/useFetch";
 import * as signalR from "@microsoft/signalr";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import logo from "../logo.svg";
 
 export default function Home() {
   const { data } = useFetch(`http://190.113.124.155:9099/Pedido`);
@@ -49,6 +52,31 @@ export default function Home() {
 
         return updatedData;
       });
+
+      toast.info("¡Hay un nuevo pedido!", {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+
+      if (Notification.permission === "granted") {
+        new Notification("Notificacion", {
+          body: "¡Hay un nuevo pedido!",
+          icon: logo,
+        });
+      } else if (Notification.permission !== "denied") {
+        Notification.requestPermission().then((permission) => {
+          if (permission === "granted") {
+            new Notification("Notificacion", {
+              body: "¡Hay un nuevo pedido!",
+              icon: logo,
+            });
+          }
+        });
+      }
     });
 
     connection1.on("PedidoActualizado", (banner) => {
@@ -225,6 +253,7 @@ export default function Home() {
           </Box>
         </Box>
       </div>
+      <ToastContainer />
     </>
   );
 }
