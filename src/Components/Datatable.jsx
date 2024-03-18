@@ -203,14 +203,14 @@ function EnhancedTable({ desc, priv }) {
         console.log(priv);
         var url = ``;
         if ((desc != "" || desc != null) && (priv == "" || priv == null)) {
-          url = `http://190.113.124.155:9099/Articulo?desc=${desc}&priv=${privToken}&order=asc`;
+          url = `http://190.113.124.155:9099/Articulo?desc=${desc}&priv=${privToken}&order=asc&drainsa=1&motornova=1`;
         } else if (
           (desc == "" || desc == null) &&
           (priv != "" || priv != null)
         ) {
-          url = `http://190.113.124.155:9099/Articulo/Familia?desc=${priv}&priv=${privToken}&order=asc`;
+          url = `http://190.113.124.155:9099/Articulo/Familia?desc=${priv}&priv=${privToken}&order=asc&drainsa=1&motornova=1`;
         } else {
-          url = `http://190.113.124.155:9099/Articulo?desc=${desc}&priv=${privToken}&order=asc`;
+          url = `http://190.113.124.155:9099/Articulo?desc=${desc}&priv=${privToken}&order=asc&drainsa=1&motornova=1`;
         }
 
         console.log(url);

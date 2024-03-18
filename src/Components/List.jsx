@@ -10,7 +10,7 @@ import * as signalR from "@microsoft/signalr";
 import { format } from "date-fns";
 
 export default function FolderList() {
-  const { data } = useFetch(`http://190.113.124.155:9099/Pedido`);
+  const { data } = useFetch(`http://190.113.124.155:9099/Pedido?despacho=nulo`);
 
   const [signalRData, setSignalRData] = useState(null);
 

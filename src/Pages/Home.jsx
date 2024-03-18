@@ -20,7 +20,7 @@ import "react-toastify/dist/ReactToastify.css";
 import logo from "../logo.svg";
 
 export default function Home() {
-  const { data } = useFetch(`http://190.113.124.155:9099/Pedido`);
+  const { data } = useFetch(`http://190.113.124.155:9099/Pedido?despacho=nulo`);
 
   const [signalRData, setSignalRData] = useState(null);
 

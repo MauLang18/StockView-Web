@@ -106,7 +106,7 @@ export default function Navbar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const { data } = useFetch(`http://190.113.124.155:9099/Pedido`);
+  const { data } = useFetch(`http://190.113.124.155:9099/Pedido?despacho=nulo`);
 
   const [signalRData, setSignalRData] = useState(null);
 
